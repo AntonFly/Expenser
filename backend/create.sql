@@ -1,0 +1,15 @@
+create sequence expense_seq start with 1 increment by 50;
+create sequence expense_type_seq start with 1 increment by 50;
+create sequence income_seq start with 1 increment by 50;
+create sequence income_type_seq start with 1 increment by 50;
+create sequence month_result_seq start with 1 increment by 50;
+create sequence user_seq start with 1 increment by 50;
+create table expense (date date, sum numeric(38,2), id bigint not null, id_expense bigint not null, comment varchar(255), primary key (id));
+create table expense_type (id bigint not null, description varchar(255), name varchar(255), primary key (id));
+create table income (date date, sum numeric(38,2), id bigint not null, id_income bigint not null, comment varchar(255), primary key (id));
+create table income_type (id bigint not null, description varchar(255), name varchar(255), primary key (id));
+create table month_result (end_sum numeric(38,2), month integer, start_sum numeric(38,2), year integer, id bigint not null, id_user bigint not null, primary key (id));
+create table user (start_sum numeric(38,2), id bigint not null, name varchar(255), patronymic varchar(255), surname varchar(255), primary key (id));
+alter table if exists expense add constraint FKclgpffx0rcm1dwsfayfcog263 foreign key (id_expense) references expense_type;
+alter table if exists income add constraint FKmsc97awmmahwesp7vb2gn3yfj foreign key (id_income) references income_type;
+alter table if exists month_result add constraint FKgw1i5dv7j2v0uviuhkx6y7v4b foreign key (id_user) references user;
