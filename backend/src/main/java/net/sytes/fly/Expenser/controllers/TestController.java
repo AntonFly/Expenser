@@ -19,7 +19,6 @@ public class TestController {
 
     @GetMapping("/test")
     public Collection<Users> test(){
-
         return incomeTypeService.findAll();
     }
 }
