@@ -26,17 +26,17 @@ public class IncomeTypeController {
         return incomeTypeService.findAll();
     }
 
-    @PostMapping("/createType")
+    @PostMapping("/create")
     public IncomeType create(@RequestBody IncomeTypeCreate dto){
         return incomeTypeService.createType(dto);
     }
 
-    @PostMapping("/editType")
-    public IncomeType edit(@RequestBody IncomeTypeUpdate dto) throws IncomeTypeNotFoundException {
+    @PostMapping("/update")
+    public IncomeType update(@RequestBody IncomeTypeUpdate dto) throws IncomeTypeNotFoundException {
         return incomeTypeService.updateType(dto);
     }
 
-    @DeleteMapping("/deleteType/{id}")
+    @DeleteMapping("/delete/{id}")
     public  void delete(@PathVariable long id) throws IncomeTypeNotFoundException {
         incomeTypeService.deleteType(id);
     }

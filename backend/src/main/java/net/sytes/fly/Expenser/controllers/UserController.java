@@ -26,17 +26,17 @@ public class UserController {
         return userService.findAll();
     }
 
-    @PostMapping("/createUser")
+    @PostMapping("/create")
     public User create(@RequestBody UserCreate dto){
         return userService.createUser(dto);
     }
 
-    @PostMapping("/editUser")
-    public User edit(@RequestBody UserUpdate dto) throws UserNotFoundException {
+    @PostMapping("/update")
+    public User update(@RequestBody UserUpdate dto) throws UserNotFoundException {
         return userService.updateUser(dto);
     }
 
-    @DeleteMapping("/deleteUser/{id}")
+    @DeleteMapping("/delete/{id}")
     public  void delete(@PathVariable long id) throws UserNotFoundException {
         userService.deleteUser(id);
     }

@@ -38,7 +38,7 @@ public class MonthResultController {
     }
 
     @PostMapping("/update")
-    public MonthResult edit(@RequestBody MonthResultUpdate dto) throws UserNotFoundException, MonthResultNotFoundException, MonthResultBadRequestException {
+    public MonthResult update(@RequestBody MonthResultUpdate dto) throws UserNotFoundException, MonthResultNotFoundException, MonthResultBadRequestException {
         return monthResultService.updateMonthResult(dto);
     }
 

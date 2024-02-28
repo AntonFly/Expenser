@@ -26,17 +26,17 @@ public class ExpenseTypeController {
         return expenseTypeService.findAll();
     }
 
-    @PostMapping("/createType")
+    @PostMapping("/create")
     public ExpenseType create(@RequestBody ExpenseTypeCreate dto){
         return expenseTypeService.createType(dto);
     }
 
-    @PostMapping("/editType")
-    public ExpenseType edit(@RequestBody ExpenseTypeUpdate dto) throws ExpenseTypeNotFoundException {
+    @PostMapping("/update")
+    public ExpenseType update(@RequestBody ExpenseTypeUpdate dto) throws ExpenseTypeNotFoundException {
         return expenseTypeService.updateType(dto);
     }
 
-    @DeleteMapping("/deleteType/{id}")
+    @DeleteMapping("/delete/{id}")
     public  void delete(@PathVariable long id) throws ExpenseTypeNotFoundException {
         expenseTypeService.deleteType(id);
     }
