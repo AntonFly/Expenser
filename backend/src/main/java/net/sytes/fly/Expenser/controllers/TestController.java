@@ -1,6 +1,6 @@
 package net.sytes.fly.Expenser.controllers;
 
-import net.sytes.fly.Expenser.entities.Users;
+import net.sytes.fly.Expenser.entities.User;
 import net.sytes.fly.Expenser.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +18,7 @@ public class TestController {
     }
 
     @GetMapping("/test")
-    public Collection<Users> test(){
+    public Collection<User> test(){
         return incomeTypeService.findAll();
     }
 }

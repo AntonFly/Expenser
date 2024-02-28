@@ -1,6 +1,8 @@
 package net.sytes.fly.Expenser.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,10 +14,11 @@ import java.util.List;
 @Getter
 @Setter
 @Table(name ="Users")
-public class Users {
+public class User {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name="id")
+    @JsonProperty("id")
     private long idUser;
 
     @Column
@@ -30,15 +33,15 @@ public class Users {
     @Column
     private BigDecimal startSum;
 
-    @OneToMany(mappedBy = "users")
+    @OneToMany(mappedBy = "user")
     @JsonBackReference
     private List<MonthResult> monthResultList;
 
-    @OneToMany(mappedBy = "users")
+    @OneToMany(mappedBy = "user")
     @JsonBackReference
     private List<Income> incomeList;
 
-    @OneToMany(mappedBy = "users")
+    @OneToMany(mappedBy = "user")
     @JsonBackReference
     private List<Expense> expenseList;
 

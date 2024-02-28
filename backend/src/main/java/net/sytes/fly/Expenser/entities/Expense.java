@@ -34,6 +34,6 @@ public class Expense {
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "idUser",referencedColumnName="id", nullable = false)
-    private Users users;
+    private User user;
 
 }

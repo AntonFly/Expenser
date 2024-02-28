@@ -2,12 +2,10 @@ package net.sytes.fly.Expenser.controllers;
 
 
 import net.sytes.fly.Expenser.dto.IncomeType.IncomeTypeCreate;
-import net.sytes.fly.Expenser.dto.IncomeType.IncomeTypeEdit;
+import net.sytes.fly.Expenser.dto.IncomeType.IncomeTypeUpdate;
 import net.sytes.fly.Expenser.entities.IncomeType;
-import net.sytes.fly.Expenser.entities.Users;
 import net.sytes.fly.Expenser.exceptions.IncomeTypeNotFoundException;
 import net.sytes.fly.Expenser.service.IncomeTypeService;
-import net.sytes.fly.Expenser.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,17 +28,17 @@ public class IncomeTypeController {
 
     @PostMapping("/createType")
     public IncomeType create(@RequestBody IncomeTypeCreate dto){
-        return incomeTypeService.CreateType(dto);
+        return incomeTypeService.createType(dto);
     }
 
     @PostMapping("/editType")
-    public IncomeType edit(@RequestBody IncomeTypeEdit dto) throws IncomeTypeNotFoundException {
-        return incomeTypeService.EditType(dto);
+    public IncomeType edit(@RequestBody IncomeTypeUpdate dto) throws IncomeTypeNotFoundException {
+        return incomeTypeService.updateType(dto);
     }
 
     @DeleteMapping("/deleteType/{id}")
     public  void delete(@PathVariable long id) throws IncomeTypeNotFoundException {
-        incomeTypeService.DeleteType(id);
+        incomeTypeService.deleteType(id);
     }
 
 }

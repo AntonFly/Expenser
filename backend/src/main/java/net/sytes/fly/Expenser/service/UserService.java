@@ -1,9 +1,22 @@
 package net.sytes.fly.Expenser.service;
 
-import net.sytes.fly.Expenser.entities.Users;
+import net.sytes.fly.Expenser.dto.Users.UserCreate;
+import net.sytes.fly.Expenser.dto.Users.UserUpdate;
+import net.sytes.fly.Expenser.entities.User;
+import net.sytes.fly.Expenser.exceptions.UserNotFoundException;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 
 public interface UserService {
-    Collection<Users> findAll();
+    Collection<User> findAll();
+
+    @Transactional(rollbackFor = Exception.class)
+    User createUser(UserCreate dto);
+
+    @Transactional(rollbackFor = Exception.class)
+    User updateUser(UserUpdate dto) throws UserNotFoundException;
+
+    @Transactional(rollbackFor = Exception.class)
+    void deleteUser(long userId) throws UserNotFoundException;
 }

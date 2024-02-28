@@ -2,7 +2,7 @@ package net.sytes.fly.Expenser.impl;
 
 import net.sytes.fly.Expenser.dao.ExpenseTypeRepository;
 import net.sytes.fly.Expenser.dto.ExpenseType.ExpenseTypeCreate;
-import net.sytes.fly.Expenser.dto.ExpenseType.ExpenseTypeEdit;
+import net.sytes.fly.Expenser.dto.ExpenseType.ExpenseTypeUpdate;
 import net.sytes.fly.Expenser.entities.ExpenseType;
 import net.sytes.fly.Expenser.exceptions.ExpenseTypeNotFoundException;
 import net.sytes.fly.Expenser.service.ExpenseTypeService;
@@ -27,7 +27,7 @@ public class ExpenseTypeServiceImpl implements ExpenseTypeService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public ExpenseType CreateType(ExpenseTypeCreate dto) {
+    public ExpenseType createType(ExpenseTypeCreate dto) {
         ExpenseType expenseType = new ExpenseType();
         expenseType.setName(dto.name());
         expenseType.setDescription(dto.description());
@@ -36,7 +36,7 @@ public class ExpenseTypeServiceImpl implements ExpenseTypeService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public ExpenseType EditType(ExpenseTypeEdit dto) throws ExpenseTypeNotFoundException {
+    public ExpenseType updateType(ExpenseTypeUpdate dto) throws ExpenseTypeNotFoundException {
         ExpenseType expenseType = this.expenseTypeRepository
                 .findById(dto.id())
                 .orElseThrow(() -> new ExpenseTypeNotFoundException("id",String.valueOf(dto.id())));
@@ -48,7 +48,7 @@ public class ExpenseTypeServiceImpl implements ExpenseTypeService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void DeleteType(long typeId) throws ExpenseTypeNotFoundException {
+    public void deleteType(long typeId) throws ExpenseTypeNotFoundException {
         ExpenseType expenseType = this.expenseTypeRepository
                 .findById(typeId)
                 .orElseThrow(() -> new ExpenseTypeNotFoundException("id",String.valueOf(typeId)));

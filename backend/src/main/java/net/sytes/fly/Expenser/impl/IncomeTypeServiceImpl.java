@@ -1,10 +1,8 @@
 package net.sytes.fly.Expenser.impl;
 
-import jakarta.persistence.criteria.CriteriaBuilder;
 import net.sytes.fly.Expenser.dao.IncomeTypeRepository;
 import net.sytes.fly.Expenser.dto.IncomeType.IncomeTypeCreate;
-import net.sytes.fly.Expenser.dto.IncomeType.IncomeTypeEdit;
-import net.sytes.fly.Expenser.entities.ExpenseType;
+import net.sytes.fly.Expenser.dto.IncomeType.IncomeTypeUpdate;
 import net.sytes.fly.Expenser.entities.IncomeType;
 import net.sytes.fly.Expenser.exceptions.IncomeTypeNotFoundException;
 import net.sytes.fly.Expenser.service.IncomeTypeService;
@@ -28,7 +26,7 @@ public class IncomeTypeServiceImpl implements IncomeTypeService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public IncomeType CreateType(IncomeTypeCreate dto) {
+    public IncomeType createType(IncomeTypeCreate dto) {
         IncomeType incomeType = new IncomeType();
         incomeType.setName(dto.name());
         incomeType.setDescription(dto.description());
@@ -37,7 +35,7 @@ public class IncomeTypeServiceImpl implements IncomeTypeService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public IncomeType EditType(IncomeTypeEdit dto) throws IncomeTypeNotFoundException {
+    public IncomeType updateType(IncomeTypeUpdate dto) throws IncomeTypeNotFoundException {
         IncomeType incomeType = this.incomeTypeRepository
                 .findById(dto.id())
                 .orElseThrow(() -> new IncomeTypeNotFoundException("id",String.valueOf(dto.id())));
@@ -49,7 +47,7 @@ public class IncomeTypeServiceImpl implements IncomeTypeService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void DeleteType(long typeId) throws IncomeTypeNotFoundException {
+    public void deleteType(long typeId) throws IncomeTypeNotFoundException {
         IncomeType incomeType = this.incomeTypeRepository
                 .findById(typeId)
                 .orElseThrow(() -> new IncomeTypeNotFoundException("id",String.valueOf(typeId)));

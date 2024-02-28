@@ -1,8 +1,7 @@
 package net.sytes.fly.Expenser.service;
 
 import net.sytes.fly.Expenser.dto.IncomeType.IncomeTypeCreate;
-import net.sytes.fly.Expenser.dto.IncomeType.IncomeTypeEdit;
-import net.sytes.fly.Expenser.entities.ExpenseType;
+import net.sytes.fly.Expenser.dto.IncomeType.IncomeTypeUpdate;
 import net.sytes.fly.Expenser.entities.IncomeType;
 import net.sytes.fly.Expenser.exceptions.IncomeTypeNotFoundException;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,11 +12,11 @@ public interface IncomeTypeService {
     Collection<IncomeType> findAll();
 
     @Transactional(rollbackFor = Exception.class)
-    IncomeType CreateType(IncomeTypeCreate dto);
+    IncomeType createType(IncomeTypeCreate dto);
 
     @Transactional(rollbackFor = Exception.class)
-    IncomeType EditType (IncomeTypeEdit edit) throws IncomeTypeNotFoundException;
+    IncomeType updateType(IncomeTypeUpdate edit) throws IncomeTypeNotFoundException;
 
     @Transactional(rollbackFor = Exception.class)
-    void DeleteType(long typeId) throws IncomeTypeNotFoundException;
+    void deleteType(long typeId) throws IncomeTypeNotFoundException;
 }
