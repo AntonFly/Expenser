@@ -1,5 +1,6 @@
 package net.sytes.fly.Expenser.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,6 +15,7 @@ public class MonthResult {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "id")
+    @JsonProperty("id")
     private long idMounth;
 
     @Column(name="start_sum")
