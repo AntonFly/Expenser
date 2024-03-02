@@ -1,9 +1,11 @@
 package net.sytes.fly.Expenser.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import net.sytes.fly.Expenser.dto.MonthResult.MonthResultResponse;
 
 import java.math.BigDecimal;
 
@@ -33,5 +35,17 @@ public class MonthResult {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "idUser",referencedColumnName="id", nullable = false)
     private User user;
+
+    public MonthResultResponse toResponse(){
+
+        return new MonthResultResponse(
+                 this.startSum,
+                 this.endSum,
+                 this.month,
+                 this.year,
+                 this.user.getIdUser(),
+                 this.idMounth
+         );
+    }
 
 }

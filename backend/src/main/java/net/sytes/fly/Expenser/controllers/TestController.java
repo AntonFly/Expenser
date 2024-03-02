@@ -17,8 +17,8 @@ public class TestController {
         this.incomeTypeService = incomeTypeService;
     }
 
-    @GetMapping("/test")
-    public Collection<User> test(){
-        return incomeTypeService.findAll();
-    }
+//    @GetMapping("/test")
+//    public Collection<User> test(){
+//        return incomeTypeService.findAll();
+//    }
 }

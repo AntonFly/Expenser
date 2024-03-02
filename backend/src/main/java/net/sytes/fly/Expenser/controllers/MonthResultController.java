@@ -2,6 +2,7 @@ package net.sytes.fly.Expenser.controllers;
 
 
 import net.sytes.fly.Expenser.dto.MonthResult.MonthResultCreate;
+import net.sytes.fly.Expenser.dto.MonthResult.MonthResultResponse;
 import net.sytes.fly.Expenser.dto.MonthResult.MonthResultUpdate;
 import net.sytes.fly.Expenser.dto.Users.UserCreate;
 import net.sytes.fly.Expenser.dto.Users.UserUpdate;
@@ -28,17 +29,17 @@ public class MonthResultController {
     }
 
     @GetMapping("/getAll")
-    public Collection<MonthResult> getAll(){
+    public Collection<MonthResultResponse> getAll(){
         return monthResultService.findAll();
     }
 
     @PostMapping("/create")
-    public MonthResult create(@RequestBody MonthResultCreate dto) throws UserNotFoundException, MonthResultBadRequestException {
+    public MonthResultResponse create(@RequestBody MonthResultCreate dto) throws UserNotFoundException, MonthResultBadRequestException {
         return monthResultService.createMonthResult(dto);
     }
 
     @PostMapping("/update")
-    public MonthResult update(@RequestBody MonthResultUpdate dto) throws UserNotFoundException, MonthResultNotFoundException, MonthResultBadRequestException {
+    public MonthResultResponse update(@RequestBody MonthResultUpdate dto) throws UserNotFoundException, MonthResultNotFoundException, MonthResultBadRequestException {
         return monthResultService.updateMonthResult(dto);
     }
 

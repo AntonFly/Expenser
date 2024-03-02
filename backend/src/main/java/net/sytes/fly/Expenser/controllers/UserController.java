@@ -1,9 +1,12 @@
 package net.sytes.fly.Expenser.controllers;
 
 
+import net.sytes.fly.Expenser.dto.Users.SimpleUserResponse;
 import net.sytes.fly.Expenser.dto.Users.UserCreate;
+import net.sytes.fly.Expenser.dto.Users.UserResponse;
 import net.sytes.fly.Expenser.dto.Users.UserUpdate;
 import net.sytes.fly.Expenser.entities.User;
+import net.sytes.fly.Expenser.exceptions.MonthResultNotFoundException;
 import net.sytes.fly.Expenser.exceptions.UserNotFoundException;
 import net.sytes.fly.Expenser.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,17 +25,17 @@ public class UserController {
     }
 
     @GetMapping("/getAll")
-    public Collection<User> getAll(){
+    public Collection<SimpleUserResponse> getAll(){
         return userService.findAll();
     }
 
     @PostMapping("/create")
-    public User create(@RequestBody UserCreate dto){
+    public UserResponse create(@RequestBody UserCreate dto){
         return userService.createUser(dto);
     }
 
     @PostMapping("/update")
-    public User update(@RequestBody UserUpdate dto) throws UserNotFoundException {
+    public UserResponse update(@RequestBody UserUpdate dto) throws UserNotFoundException, MonthResultNotFoundException {
         return userService.updateUser(dto);
     }
 

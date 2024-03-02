@@ -11,5 +11,5 @@ public class MonthResultNotFoundException extends ChangeSetPersister.NotFoundExc
     }
 
     public MonthResultNotFoundException(String paramName, String param)
-    { message = "Не найдено месяца с " + paramName + " : " + param; }
+    { message = "Не найдено результатов месяца с " + paramName + " : " + param; }
 }

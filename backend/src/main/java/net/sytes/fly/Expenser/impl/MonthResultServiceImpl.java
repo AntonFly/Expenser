@@ -3,6 +3,7 @@ package net.sytes.fly.Expenser.impl;
 import net.sytes.fly.Expenser.dao.MonthResultRepository;
 import net.sytes.fly.Expenser.dao.UserRepository;
 import net.sytes.fly.Expenser.dto.MonthResult.MonthResultCreate;
+import net.sytes.fly.Expenser.dto.MonthResult.MonthResultResponse;
 import net.sytes.fly.Expenser.dto.MonthResult.MonthResultUpdate;
 import net.sytes.fly.Expenser.dto.Users.UserCreate;
 import net.sytes.fly.Expenser.dto.Users.UserUpdate;
@@ -33,12 +34,13 @@ public class MonthResultServiceImpl implements MonthResultService {
     }
 
     @Override
-    public Collection<MonthResult> findAll() {
-        return (Collection<MonthResult>) monthResultRepository.findAll();
+    public Collection<MonthResultResponse> findAll() {
+        return ((Collection<MonthResult>) monthResultRepository.findAll()).stream()
+                .map(MonthResult::toResponse).toList();
     }
 
     @Override
-    public MonthResult createMonthResult(MonthResultCreate dto) throws UserNotFoundException,MonthResultBadRequestException {
+    public MonthResultResponse createMonthResult(MonthResultCreate dto) throws UserNotFoundException,MonthResultBadRequestException {
         if(dto.month() > 12)
             throw new MonthResultBadRequestException("месяц", String.valueOf(dto.month()));
         if(dto.year() < 0 )
@@ -54,11 +56,11 @@ public class MonthResultServiceImpl implements MonthResultService {
         mr.setMonth(dto.month());
         mr.setUser(user);
 
-        return monthResultRepository.save(mr);
+        return monthResultRepository.save(mr).toResponse();
     }
 
     @Override
-    public MonthResult updateMonthResult(MonthResultUpdate dto) throws MonthResultNotFoundException, MonthResultBadRequestException, UserNotFoundException {
+    public MonthResultResponse updateMonthResult(MonthResultUpdate dto) throws MonthResultNotFoundException, MonthResultBadRequestException, UserNotFoundException {
         if(dto.month() > 12)
             throw new MonthResultBadRequestException("месяц", String.valueOf(dto.month()));
         if(dto.year() < 0 )
@@ -77,7 +79,7 @@ public class MonthResultServiceImpl implements MonthResultService {
         mr.setMonth(dto.month());
         mr.setUser(user);
 
-        return monthResultRepository.save(mr);
+        return monthResultRepository.save(mr).toResponse();
     }
 
     @Override
