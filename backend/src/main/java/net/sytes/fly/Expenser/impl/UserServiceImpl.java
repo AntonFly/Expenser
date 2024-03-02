@@ -79,7 +79,7 @@ public class UserServiceImpl implements UserService {
                     user.getIdUser(),user.getStartSum()).orElseThrow(()->
                     new MonthResultNotFoundException("первого месяца для пользователя id", String.valueOf(dto.id())));
             firstMR.setStartSum(dto.startSum());
-            //TODO: calculate month end sum according new user start sum 
+            //TODO: calculate month end sum according new user start sum
             user.setStartSum(dto.startSum());
         }
         user = this.userRepository.save(user);

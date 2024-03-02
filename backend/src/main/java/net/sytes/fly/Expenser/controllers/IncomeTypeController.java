@@ -2,6 +2,7 @@ package net.sytes.fly.Expenser.controllers;
 
 
 import net.sytes.fly.Expenser.dto.IncomeType.IncomeTypeCreate;
+import net.sytes.fly.Expenser.dto.IncomeType.IncomeTypeResponse;
 import net.sytes.fly.Expenser.dto.IncomeType.IncomeTypeUpdate;
 import net.sytes.fly.Expenser.entities.IncomeType;
 import net.sytes.fly.Expenser.exceptions.IncomeTypeNotFoundException;
@@ -22,17 +23,17 @@ public class IncomeTypeController {
     }
 
     @GetMapping("/getAll")
-    public Collection<IncomeType> getAll(){
+    public Collection<IncomeTypeResponse> getAll(){
         return incomeTypeService.findAll();
     }
 
     @PostMapping("/create")
-    public IncomeType create(@RequestBody IncomeTypeCreate dto){
+    public IncomeTypeResponse create(@RequestBody IncomeTypeCreate dto){
         return incomeTypeService.createType(dto);
     }
 
     @PostMapping("/update")
-    public IncomeType update(@RequestBody IncomeTypeUpdate dto) throws IncomeTypeNotFoundException {
+    public IncomeTypeResponse update(@RequestBody IncomeTypeUpdate dto) throws IncomeTypeNotFoundException {
         return incomeTypeService.updateType(dto);
     }
 

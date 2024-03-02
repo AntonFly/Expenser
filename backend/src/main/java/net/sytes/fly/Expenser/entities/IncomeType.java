@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import net.sytes.fly.Expenser.dto.IncomeType.IncomeTypeResponse;
 
 import java.util.List;
 
@@ -31,4 +32,8 @@ public class IncomeType {
     @OneToMany(mappedBy = "incomeType")
     @JsonBackReference
     private List<Income> incomes;
+
+    public IncomeTypeResponse toResponse(){
+        return new IncomeTypeResponse(this.idIncome,this.name,this.description);
+    }
 }

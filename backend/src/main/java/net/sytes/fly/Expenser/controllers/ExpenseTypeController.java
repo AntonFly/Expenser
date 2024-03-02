@@ -2,6 +2,7 @@ package net.sytes.fly.Expenser.controllers;
 
 
 import net.sytes.fly.Expenser.dto.ExpenseType.ExpenseTypeCreate;
+import net.sytes.fly.Expenser.dto.ExpenseType.ExpenseTypeResponse;
 import net.sytes.fly.Expenser.dto.ExpenseType.ExpenseTypeUpdate;
 import net.sytes.fly.Expenser.entities.ExpenseType;
 import net.sytes.fly.Expenser.exceptions.ExpenseTypeNotFoundException;
@@ -22,17 +23,17 @@ public class ExpenseTypeController {
     }
 
     @GetMapping("/getAll")
-    public Collection<ExpenseType> getAll(){
+    public Collection<ExpenseTypeResponse> getAll(){
         return expenseTypeService.findAll();
     }
 
     @PostMapping("/create")
-    public ExpenseType create(@RequestBody ExpenseTypeCreate dto){
+    public ExpenseTypeResponse create(@RequestBody ExpenseTypeCreate dto){
         return expenseTypeService.createType(dto);
     }
 
     @PostMapping("/update")
-    public ExpenseType update(@RequestBody ExpenseTypeUpdate dto) throws ExpenseTypeNotFoundException {
+    public ExpenseTypeResponse update(@RequestBody ExpenseTypeUpdate dto) throws ExpenseTypeNotFoundException {
         return expenseTypeService.updateType(dto);
     }
 

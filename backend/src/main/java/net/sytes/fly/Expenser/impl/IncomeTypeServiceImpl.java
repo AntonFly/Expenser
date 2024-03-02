@@ -2,6 +2,7 @@ package net.sytes.fly.Expenser.impl;
 
 import net.sytes.fly.Expenser.dao.IncomeTypeRepository;
 import net.sytes.fly.Expenser.dto.IncomeType.IncomeTypeCreate;
+import net.sytes.fly.Expenser.dto.IncomeType.IncomeTypeResponse;
 import net.sytes.fly.Expenser.dto.IncomeType.IncomeTypeUpdate;
 import net.sytes.fly.Expenser.entities.IncomeType;
 import net.sytes.fly.Expenser.exceptions.IncomeTypeNotFoundException;
@@ -20,29 +21,30 @@ public class IncomeTypeServiceImpl implements IncomeTypeService {
     }
 
     @Override
-    public Collection<IncomeType> findAll() {
-        return (Collection<IncomeType>) incomeTypeRepository.findAll();
+    public Collection<IncomeTypeResponse> findAll() {
+        return ((Collection<IncomeType>) incomeTypeRepository.findAll()).stream()
+                .map(IncomeType::toResponse).toList();
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public IncomeType createType(IncomeTypeCreate dto) {
+    public IncomeTypeResponse createType(IncomeTypeCreate dto) {
         IncomeType incomeType = new IncomeType();
         incomeType.setName(dto.name());
         incomeType.setDescription(dto.description());
-        return this.incomeTypeRepository.save(incomeType);
+        return this.incomeTypeRepository.save(incomeType).toResponse();
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public IncomeType updateType(IncomeTypeUpdate dto) throws IncomeTypeNotFoundException {
+    public IncomeTypeResponse updateType(IncomeTypeUpdate dto) throws IncomeTypeNotFoundException {
         IncomeType incomeType = this.incomeTypeRepository
                 .findById(dto.id())
                 .orElseThrow(() -> new IncomeTypeNotFoundException("id",String.valueOf(dto.id())));
 
         incomeType.setName(dto.name());
         incomeType.setDescription(dto.description());
-        return this.incomeTypeRepository.save(incomeType);
+        return this.incomeTypeRepository.save(incomeType).toResponse();
     }
 
     @Override

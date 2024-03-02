@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import net.sytes.fly.Expenser.dto.ExpenseType.ExpenseTypeResponse;
 
 import java.util.List;
 
@@ -27,5 +28,10 @@ public class ExpenseType {
 
     @OneToMany(mappedBy = "expenseType")
     @JsonBackReference
-    private List<Expense> incomes;
+    private List<Expense> expenses;
+
+    public ExpenseTypeResponse toResponse(){
+        return new ExpenseTypeResponse(this.idExpense,this.name, this.description);
+    }
+
 }
