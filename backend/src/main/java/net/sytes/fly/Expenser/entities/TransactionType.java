@@ -1,27 +1,25 @@
 package net.sytes.fly.Expenser.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import net.sytes.fly.Expenser.dto.IncomeType.IncomeTypeResponse;
+import net.sytes.fly.Expenser.dto.IncomeType.TransactionTypeDTO;
 
 import java.util.List;
 
 @Entity
-@Table(name ="Income_type")
+@Table(name ="Transaction_type")
 @Getter
 @Setter
-public class IncomeType {
+public class TransactionType {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name="id")
     @JsonProperty("id")
-    private long idIncome;
+    private long idTransaction;
 
     @Column
     private String name;
@@ -29,11 +27,14 @@ public class IncomeType {
     @Column
     private String description;
 
-    @OneToMany(mappedBy = "incomeType")
-    @JsonBackReference
-    private List<Income> incomes;
+    @Column
+    private boolean isIncome;
 
-    public IncomeTypeResponse toResponse(){
-        return new IncomeTypeResponse(this.idIncome,this.name,this.description);
+    @OneToMany(mappedBy = "transactionType")
+    @JsonBackReference
+    private List<Transaction> transactions;
+
+    public TransactionTypeDTO toResponse(){
+        return new TransactionTypeDTO(this.idTransaction,this.name,this.description,this.isIncome);
     }
 }

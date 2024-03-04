@@ -43,11 +43,8 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     @JsonBackReference
-    private List<Income> incomeList;
+    private List<Transaction> transactionsList;
 
-    @OneToMany(mappedBy = "user")
-    @JsonBackReference
-    private List<Expense> expenseList;
 
     public UserResponse toResponse(){
         List<MonthResultResponse> mrrList = this.getMonthResultList().stream()
